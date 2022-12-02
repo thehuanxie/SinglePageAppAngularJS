@@ -26,7 +26,7 @@
                     var countNote = Object.values(count);
                     
                     for (var n=0; n<countNote.length; n++){
-                        console.log(countNote[n]);
+                        
                         if (countNote[n]>=3 ){
                             $scope.msg = "Too much!";
                             break;
