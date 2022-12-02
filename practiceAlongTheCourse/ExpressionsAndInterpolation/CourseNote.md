@@ -13,3 +13,14 @@ Something that evaluates to some value
 
 # Interpolation
 process of evaluating a *string literal* containing one or more placeholders, which are replaced with values
+
+* In Angular, this string : 
+    ~~~~
+    message is {{message}}
+    //(provided message = "hello") is interpolated into this string:
+
+    message is hello
+    ~~~~
+
+* Still connected to the original *message* property
+    * if `$scope.message` changes, so will the interpolation result    
