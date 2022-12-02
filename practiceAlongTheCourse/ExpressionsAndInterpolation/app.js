@@ -1,14 +1,13 @@
 (function(){
     'use strict';
 
-    var MsgApp = angular.module("MsgApp",[]);
+    angular.module('MsgApp',[])
+    .controller('MsgController', MsgController);
 
-    MsgApp.controller = ('MsgController', MsgController);
+    MsgController.$inject = ['$scope'];
 
-    MsgController.$inject = ["$scope"];
-
-    function MsgController($scepe){
-        $scepe.name = "Huan";
+    function MsgController($scope){
+        $scope.name = "Huan";
     }
 
 })();
