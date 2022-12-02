@@ -8,6 +8,9 @@
 
     function MsgController($scope){
         $scope.name = "Huan";
+        $scope.sayMessage = function(){
+            return "Huan likes to paint :)"
+        };
     }
 
 })();
