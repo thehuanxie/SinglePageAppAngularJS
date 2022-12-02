@@ -24,15 +24,14 @@
                 // Object.keys = ""
                 if (Object.keys(count) != ""){
                     var countNote = Object.values(count);
+                    
                     for (var n=0; n<countNote.length; n++){
                         console.log(countNote[n]);
-    
-                        
-                        
-                        if (countNote[n]<3 ){
-                            $scope.msg = "Enjoy!";
-                        } else {
+                        if (countNote[n]>=3 ){
                             $scope.msg = "Too much!";
+                            break;
+                        } else {
+                            $scope.msg = "Enjoy!";
                         }
                     }  
                 }
