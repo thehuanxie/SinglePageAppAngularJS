@@ -17,6 +17,7 @@ process of evaluating a *string literal* containing one or more placeholders, wh
 * In Angular, this string : 
     ~~~~
     message is {{message}}
+    
     //(provided message = "hello") is interpolated into this string:
 
     message is hello
