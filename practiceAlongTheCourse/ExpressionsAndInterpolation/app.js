@@ -9,6 +9,7 @@
     function MsgController($scope,$filter){
         $scope.name = "Huan";
         $scope.stateOfBeing = "waiting";
+        $scope.LatteEat = .72;
 
         $scope.sayMessage = function(){
             var msg = "Huan likes to paint :)";

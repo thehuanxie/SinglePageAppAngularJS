@@ -22,6 +22,7 @@
             <button ng-click = "callLatte()">
                 Call Latte
             </button>
+            Latte eat: {{ LatteEat | currency : '€' : 2  }} per day.
             <br>
             <img ng-src="img/Latte_{{stateOfBeing}}.jpg" alt="This is a image of latte when he is {{stateOfBeing}}" width="300px">
             <!-- ng-src instead of src because the line excecute by HTML w/o geting the {{stateOfBeing}},
