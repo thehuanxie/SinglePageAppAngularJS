@@ -3,7 +3,8 @@
 
     angular.module('MsgApp',[])
     .controller('MsgController', MsgController)
-    .filter('loves',LovesFilterFactory);
+    .filter('loves',LovesFilterFactory)
+    .filter('truth',TruthFilterFactory);
 
     MsgController.$inject = ['$scope','lovesFilter','$filter'];
     //$inject array elements have respect the same order than controler arguments order
@@ -36,5 +37,13 @@
             return input;
         };
     };
+
+    function TruthFilterFactory(){
+        return function(input, target, replace){
+            input = input || "";
+            input = input.replace(target, replace);
+            return input;
+        };
+    }
 
 })();

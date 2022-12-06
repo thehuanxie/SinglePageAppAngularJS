@@ -15,7 +15,9 @@
     <div ng-controller="MsgController">
         {{name}} has a message for you : <br>
         Original: {{sayMessage()}} <br>
-        Custom filter: {{saylovesMessage()}}
+        Custom filter: {{saylovesMessage()}} <br>
+        Truth: {{saylovesMessage() | truth : 'paint' : 'code'}} <br>
+        BIG TRUTH: {{saylovesMessage() | truth : 'paint' : 'code' | uppercase}}
         <!-- Error will not be output: -->
         {{dksiuzengl}}
 
