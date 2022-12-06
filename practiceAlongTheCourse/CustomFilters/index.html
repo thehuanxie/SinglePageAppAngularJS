@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MsgApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="angular.min.js" defer></script>
+    <script src="app.js" defer></script>
+    <title>Expressions and Interpolation</title>
+</head>
+
+<body>
+    <h1>Expressions and Interpolation</h1>
+    <div ng-controller="MsgController">
+        {{name}} has a message for you : <br>
+        Original: {{sayMessage()}} <br>
+        Custom filter: {{saylovesMessage()}}
+        <!-- Error will not be output: -->
+        {{dksiuzengl}}
+
+        <div>
+            <button ng-click = "callLatte()">
+                Call Latte
+            </button>
+            Latte eat: {{ LatteEat | currency : '€' : 2  }} per day.
+            <br>
+            <img ng-src="img/Latte_{{stateOfBeing}}.jpg" alt="This is a image of latte when he is {{stateOfBeing}}" width="300px">
+            <!-- ng-src instead of src because the line excecute by HTML w/o geting the {{stateOfBeing}},
+            which results an 404 error in console.  -->
+        </div>
+    </div>
+</body>
+
+</html>
