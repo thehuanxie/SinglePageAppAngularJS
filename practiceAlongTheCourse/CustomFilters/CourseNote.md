@@ -20,4 +20,4 @@ angular.module('app',[])
 ```
 The name of filter must be a valid angular expression identifier.
 
-## Step3: (JavaScript) Inject it W/ *name *Filter*
+## Step3: (JavaScript) Inject it W/ *name***Filter**
