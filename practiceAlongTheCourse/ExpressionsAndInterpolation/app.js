@@ -4,14 +4,16 @@
     angular.module('MsgApp',[])
     .controller('MsgController', MsgController);
 
-    MsgController.$inject = ['$scope'];
+    MsgController.$inject = ['$scope','$filter'];
 
-    function MsgController($scope){
+    function MsgController($scope,$filter){
         $scope.name = "Huan";
         $scope.stateOfBeing = "waiting";
 
         $scope.sayMessage = function(){
-            return "Huan likes to paint :)"
+            var msg = "Huan likes to paint :)";
+            var output = $filter('uppercase')(msg);
+            return output;
         };
 
         $scope.callLatte = function(){
