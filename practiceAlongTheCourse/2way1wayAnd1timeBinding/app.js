@@ -6,14 +6,16 @@ angular.module('BindingApp', [])
 
 BindingController.$inject = ['$scope'];
 function BindingController($scope) {
-  $scope.firstName = "Yaakov";
-
+  $scope.firstName = "Latte";
+  // $scope.fullName = "";
+  // if we give the empty value here, the 1-time binding will be creat and destroy here.
+  
   $scope.showNumberOfWatchers = function () {
     console.log("# of Watchers: ", $scope.$$watchersCount);
   };
 
   $scope.setFullName = function () {
-    $scope.fullName = $scope.firstName + " " + "Chaikin";
+    $scope.fullName = $scope.firstName + " " + "XIE";
   };
 
   $scope.logFirstName = function () {
