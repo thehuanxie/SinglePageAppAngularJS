@@ -2,7 +2,9 @@
 'use strict';
 
 var shoppingList1 = [
-  "Milk", "Donuts", "Cookies", "Chocolate", "Peanut Butter", "Pepto Bismol", "Pepto Bismol (Chocolate flavor)", "Pepto Bismol (Cookie flavor)"
+  "Milk", "Donuts", "Cookies", "Chocolate", "Peanut Butter", 
+  "Pepto Bismol", "Pepto Bismol (Chocolate flavor)", 
+  "Pepto Bismol (Cookie flavor)"
 ];
 
 var shoppingList2 = [
@@ -31,6 +33,17 @@ ShoppingListController.$inject = ['$scope'];
 function ShoppingListController($scope) {
   $scope.shoppingList1 = shoppingList1;
   $scope.shoppingList2 = shoppingList2;
+
+  $scope.addToList = function (){
+    var newItem ={
+      name: $scope.newItemName,
+      quantity : $scope.newItemQuantity
+    };
+  $scope.shoppingList2.push(newItem);
+
+  }
 }
+
+
 
 })();
