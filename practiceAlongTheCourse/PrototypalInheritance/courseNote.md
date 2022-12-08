@@ -4,7 +4,7 @@
 
 Ex.: class Animal{numberOfLegs, walk()} => class Dog {numberOfLegs, walk()}
 
-*Technique for code reuse as well as logical entity structure*
+*Technique for code reuse as well as logical entity structure.*
 
 ## JS Prototypal Inheritance
 
