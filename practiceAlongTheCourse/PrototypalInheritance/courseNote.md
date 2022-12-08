@@ -19,5 +19,5 @@ However, if the expression is set on the child object, this property masks type 
 As per ex.: 
 ```
     class Parent{type:"parent", method()} => class Child{type:"child"}
-    `//child.type = "child"
+    //child.type = "child"
 ```
