@@ -45,8 +45,8 @@
         </li>
       </ul>
     
-     <div class="emptyMessage" ng-if="showList.boughtMsg">{{showList.boughtMsg}}</div>
-     <div class="emptyMessage" >{{showList.boughtMsg}}</div>
+     <div class="emptyMessage" ng-if="showList.items.length !== undefined">Everything is Bought!</div>
+     
   
     </div>
 
@@ -56,8 +56,7 @@
      <ul>
        <li ng-repeat="boughtItem in boughtList.boughtItems">Bought {{ boughtItem.quantity }} {{ boughtItem.name }} </li>
      </ul>
-     <div class="emptyMessage" ng-if="boughtList.toBuyMsg">{{boughtList.toBuyMsg}}</div>
-     <div class="emptyMessage" >{{boughtList.toBuyMsg}}</div>
+     <div class="emptyMessage" ng-if="!boughtList.boughtItems.length">Nothing Bought Yet!</div>
     </div>
   </div>
 </div>
