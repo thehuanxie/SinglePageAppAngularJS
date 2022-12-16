@@ -1,20 +1,120 @@
-(function(){
+(function () {
     'use strict';
 
     angular.module('ShoppingListCheckOff', [])
-    .controller('ShoppingListToBuy',ShoppingListToBuy)
-    .controller('ShoppingListBought',ShoppingListBought)
-    .service('ShoppingListCheckOffService',ShoppingListCheckOffService);
+        .controller('ShoppingListAddController', ShoppingListAddController)
+        .controller('ShoppingListShowController', ShoppingListShowController)
+        .controller('ShoppingListBoughtController', ShoppingListBoughtController)
+        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-    ShoppingListToBuy.$inject = ['ShoppingListCheckOffService']; 
-    function ShoppingListToBuy(ShoppingListCheckOffService){
+    ShoppingListAddController.$inject = ['ShoppingListCheckOffService'];
+    function ShoppingListAddController(ShoppingListCheckOffService) {
+        var itemAdder = this;
+
+        itemAdder.itemName = "";
+        itemAdder.itemQuantity = "";
+
+        itemAdder.addItem = function () {
+            ShoppingListCheckOffService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
+        };
+    }
+
+
+    ShoppingListShowController.$inject = ['ShoppingListCheckOffService'];
+    function ShoppingListShowController(ShoppingListCheckOffService) {
+        var showList = this;
         
+        showList.items = ShoppingListCheckOffService.getItems();
+        showList.boughtItem = ShoppingListCheckOffService.getBoughtItems();
 
-    };
+        showList.removeItem = function (itemIndex) {
+            ShoppingListCheckOffService.removeItem(itemIndex);
+        };
 
-    ShoppingListBought.$inject = ['ShoppingListCheckOffService'];  
-    function ShoppingListBought(ShoppingListCheckOffService){
+        showList.addBoughtItem = function (itemIndex) {
+            ShoppingListCheckOffService.addBoughtItem(itemIndex); 
+        };
 
-    };  
+        // showList.boughtMsg = ShoppingListCheckOffService.bought();
 
-})();
+        showList.boughtMsg = ShoppingListCheckOffService.msg();
+
+    }
+
+    ShoppingListBoughtController.$inject = ['ShoppingListCheckOffService'];
+    function ShoppingListBoughtController(ShoppingListCheckOffService) {
+        var boughtList = this;
+
+        boughtList.boughtItems = ShoppingListCheckOffService.getBoughtItems();
+
+        // boughtList.toBuyMsg = ShoppingListCheckOffService.toBuy();
+
+        boughtList.toBuyMsg = ShoppingListCheckOffService.msg();
+
+    }
+
+    function ShoppingListCheckOffService() {
+        var service = this;
+
+        // List of shopping items
+        var items = [];
+        var boughtItems = [];
+
+        service.addItem = function (itemName, quantity) {
+            var item = {
+                name: itemName,
+                quantity: quantity
+            };
+            items.push(item);
+        };
+
+        service.removeItem = function (itemIndex) {
+            items.splice(itemIndex, 1);
+        };
+
+        service.getItems = function () {
+            return items;
+        };
+
+        service.addBoughtItem = function (itemIndex) {
+            var boughtItem = {
+                name: items[itemIndex].name,
+                quantity: items[itemIndex].quantity
+            };
+            boughtItems.push(boughtItem);
+            items.splice(itemIndex, 1);
+        };   
+
+        // service.bought = function(){
+        //     var msg = "";
+        //     if (boughtItems.length >0 && items.length === 0){
+        //         msg = "Everything is bought!";
+                
+        //     };
+        //     return msg;
+        // };
+
+        // service.toBuy = function(){
+        //     var msg = "";
+        //     if (items.length > 0 && boughtItems.length === 0) {
+        //         msg = "Nothing bought yet.";
+                
+        //     };
+        //     return msg;
+        // };
+        service.msg = function(){
+            var msg = "";
+            if ((boughtItems.length >0) && (items.length == 0 )){
+                msg = "everything is bought";
+            } else if ((boughtItems.length == 0) && (items.length > 0)){
+                msg = "Nothing bought yet.";
+            };
+            return msg;
+        };
+
+        service.getBoughtItems = function () {
+            return boughtItems;
+        };
+
+    }
+}) ();
