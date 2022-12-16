@@ -32,15 +32,11 @@
         };
 
         showList.addBoughtItem = function (itemIndex) {
-            try{
             ShoppingListCheckOffService.addBoughtItem(itemIndex); 
-            }catch(msg){
-                showList.boughtMsg = ShoppingListCheckOffService.msg;
-            };
         };
 
-        
-
+       showList.checkAllBought = ShoppingListCheckOffService.checkAllBought();
+       
     }
 
     ShoppingListBoughtController.$inject = ['ShoppingListCheckOffService'];
@@ -58,18 +54,18 @@
         var items = [];
         var boughtItems = [];
 
-        service.addItem = function (itemName, quantity) {
-           
+
+        service.addItem = function (itemName, quantity) {   
             var item = {
                 name: itemName,
                 quantity: quantity
             };
             items.push(item);
-               
         };
 
         service.removeItem = function (itemIndex) {
             items.splice(itemIndex, 1);
+           
         };
 
         service.getItems = function () {
@@ -84,12 +80,13 @@
             boughtItems.push(boughtItem);
             items.splice(itemIndex, 1);
             
-            var msg = "";
-            if (boughtItems.length >0 && items.length === 0){
-                msg = "Everything is bought!";
+        };  
+        
+        service.checkAllBought = function(){
+            if ((boughtItems.length > 0) && (items.length === 0 )){
+                return true;
             };
-            return msg;
-        };   
+        }; 
 
         // service.toBuy = function(){
         //     var msg = "";
