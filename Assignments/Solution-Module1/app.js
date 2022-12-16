@@ -16,27 +16,33 @@
            
             if ($scope.items==''){ //why default arry is ['']?
                 $scope.msg= "Please enter data first.";
+            } else if ($scope.items.length<=3){
+                $scope.msg= "Enjoy!";
             } else {
-                var count = {};
-                $scope.items.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+                $scope.msg= "Too much!";
+            };
+
+            // } else {
+            //     var count = {};
+            //     $scope.items.forEach(function(i) { count[i] = (count[i]||0) + 1;});
                 
-                //need to parse the empty value
-                // Object.keys = ""
-                if (Object.keys(count) != ""){
-                    var countNote = Object.values(count);
+            //     //need to parse the empty value
+            //     // Object.keys = ""
+            //     if (Object.keys(count) != ""){
+            //         var countNote = Object.values(count);
                     
-                    for (var n=0; n<countNote.length; n++){
+            //         for (var n=0; n<countNote.length; n++){
                         
-                        if (countNote[n]>=3 ){
-                            $scope.msg = "Too much!";
-                            break;
-                        } else {
-                            $scope.msg = "Enjoy!";
-                        }
-                    }  
-                }
+            //             if (countNote[n]>=3 ){
+            //                 $scope.msg = "Too much!";
+            //                 break;
+            //             } else {
+            //                 $scope.msg = "Enjoy!";
+            //             }
+            //         }  
+            //     }
                   
-            }
+            // }
             return $scope.msg;
         };
     }
