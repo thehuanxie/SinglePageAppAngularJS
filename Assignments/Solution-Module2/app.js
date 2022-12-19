@@ -17,8 +17,13 @@
         itemAdder.addItem = function () {
             ShoppingListCheckOffService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
         };
-    }
 
+        itemAdder.checkAllBought = function(){
+            ShoppingListCheckOffService.checkAllBought();
+
+        }
+
+    };
 
     ShoppingListShowController.$inject = ['ShoppingListCheckOffService'];
     function ShoppingListShowController(ShoppingListCheckOffService) {
@@ -35,9 +40,7 @@
             ShoppingListCheckOffService.addBoughtItem(itemIndex); 
         };
 
-       showList.checkAllBought = ShoppingListCheckOffService.checkAllBought();
-       
-    }
+    };
 
     ShoppingListBoughtController.$inject = ['ShoppingListCheckOffService'];
     function ShoppingListBoughtController(ShoppingListCheckOffService) {
@@ -45,13 +48,14 @@
 
         boughtList.boughtItems = ShoppingListCheckOffService.getBoughtItems();
 
-    }
+    };
 
     function ShoppingListCheckOffService() {
         var service = this;
 
         // List of shopping items
         var items = [];
+        var count = 0;
         var boughtItems = [];
 
 
@@ -61,11 +65,16 @@
                 quantity: quantity
             };
             items.push(item);
+            count++;
+            console.log("addItem",count);
+
         };
 
         service.removeItem = function (itemIndex) {
             items.splice(itemIndex, 1);
-           
+            count--;
+            console.log("removeItem",count);
+
         };
 
         service.getItems = function () {
@@ -79,14 +88,27 @@
             };
             boughtItems.push(boughtItem);
             items.splice(itemIndex, 1);
-            
+            count--;
+            console.log("addBought",count);
+
         };  
         
         service.checkAllBought = function(){
-            if ((boughtItems.length > 0) && (items.length === 0 )){
-                return true;
+            var done = false;
+            console.log("bought items",boughtItems.length);
+            console.log("items",items.length);
+            console.log("done before if",done);
+
+            if ( items.length === 0  && boughtItems.length >0){
+                done = true; 
             };
+            console.log("bought items after if",boughtItems.length);
+            console.log("items after if",items.length);
+            console.log("done after if",done);
+            return done;
+            
         }; 
+        
 
         // service.toBuy = function(){
         //     var msg = "";
@@ -110,5 +132,5 @@
             return boughtItems;
         };
 
-    }
+    };
 }) ();
